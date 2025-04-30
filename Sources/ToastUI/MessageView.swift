@@ -28,7 +28,7 @@ public struct MessageView: View {
             
             Text(message)
                 .font(.system(size: 15))
-                .foregroundColor(.primary)
+                .foregroundColor(.black)
                 .multilineTextAlignment(.leading)
             
             Spacer(minLength: 10)
