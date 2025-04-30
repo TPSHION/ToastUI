@@ -25,8 +25,10 @@
 将Sources/ToastUI目录下的文件直接拷贝到你的项目中。
 
 ## 使用方法
+### 1、消息提示
 
 ```swift
+import SwiftUI
 import ToastUI
 
 struct ContentView: View {
@@ -41,3 +43,29 @@ struct ContentView: View {
         .message(message: $showMessage)
     }
 }
+
+#Preview {
+    ContentView()
+}
+```
+
+### 2、toast轻提示
+```swift
+import SwiftUI
+import ToastUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Button("显示Toast") {
+                Toast("这是一条测试消息")
+            }
+        }
+        .padding()
+    }
+}
+
+#Preview {
+    ContentView()
+}
+```
