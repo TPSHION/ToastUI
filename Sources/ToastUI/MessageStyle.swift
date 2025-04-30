@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-enum MessageStyle {
+public enum MessageStyle {
     case success
     case error
     case warning
     case info
     
-    var themeColor: Color {
+    public var themeColor: Color {
         switch self {
         case .success: return .green
         case .error: return .red
@@ -22,7 +22,7 @@ enum MessageStyle {
         }
     }
     
-    var icon: String {
+    public var icon: String {
         switch self {
         case .success: return "checkmark.circle.fill"
         case .error: return "xmark.circle.fill"

@@ -7,13 +7,20 @@
 
 import SwiftUI
 
-struct MessageView: View {
-    var style: MessageStyle
-    var message: String
-    var showClose: Bool
-    var onCancelTapped: () -> Void
+public struct MessageView: View {
+    public var style: MessageStyle
+    public var message: String
+    public var showClose: Bool
+    public var onCancelTapped: () -> Void
     
-    var body: some View {
+    public init(style: MessageStyle, message: String, showClose: Bool, onCancelTapped: @escaping () -> Void) {
+        self.style = style
+        self.message = message
+        self.showClose = showClose
+        self.onCancelTapped = onCancelTapped
+    }
+    
+    public var body: some View {
         HStack(alignment: .center, spacing: 12) {
             Image(systemName: style.icon)
                 .foregroundColor(style.themeColor)

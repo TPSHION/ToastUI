@@ -7,11 +7,15 @@
 
 import SwiftUI
 
-struct MessageModifier: ViewModifier {
-    @Binding var message: Message?
+public struct MessageModifier: ViewModifier {
+    @Binding public var message: Message?
     @State private var workItem: DispatchWorkItem?
     
-    func body(content: Content) -> some View {
+    public init(message: Binding<Message?>) {
+        self._message = message
+    }
+    
+    public func body(content: Content) -> some View {
         ZStack {
             content
             
@@ -63,7 +67,7 @@ struct MessageModifier: ViewModifier {
     }
 }
 
-extension View {
+public extension View {
     func message(message: Binding<Message?>) -> some View {
         self.modifier(MessageModifier(message: message))
     }
