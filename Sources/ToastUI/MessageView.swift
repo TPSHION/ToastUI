@@ -39,7 +39,7 @@ struct MessageView: View {
         .padding(.vertical, 12)
         .padding(.horizontal, 16)
         .frame(minWidth: 0, maxWidth: 350)
-        .background(Color(.systemBackground))
+        .background(Color.white)
         .cornerRadius(10)
         .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 2)
         .padding(.horizontal, 16)
