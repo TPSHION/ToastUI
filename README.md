@@ -1,9 +1,6 @@
 
-# ToastUI(一个简单易用的SwiftUI消息提示组件。)
-
-- ![示例图片](./images/img-1.png)
-- ![示例图片](./images/img-2.png)
-- ![示例图片](./images/img-3.png)
+# ToastUI
+## 一个简单易用的SwiftUI消息提示组件。
 
 ## 功能特点
 
@@ -27,6 +24,7 @@
 
 ## 使用方法
 ### 1、消息提示
+![示例图片](./images/img-1.png)
 
 ```swift
 import SwiftUI
@@ -51,6 +49,8 @@ struct ContentView: View {
 ```
 
 ### 2、toast轻提示
+![示例图片](./images/img-2.png)
+
 ```swift
 import SwiftUI
 import ToastUI
@@ -73,6 +73,8 @@ struct ContentView: View {
 
 
 ### 3、弹窗提示
+![示例图片](./images/img-3.png)
+
 ```swift
 import SwiftUI
 import ToastUI
