@@ -2,7 +2,9 @@
 # ToastUI
 
 一个简单易用的SwiftUI消息提示组件。
+![示例图片](./test1.png)
 ![示例图片](./test2.png)
+![示例图片](./test3.png)
 
 ## 功能特点
 
@@ -62,6 +64,37 @@ struct ContentView: View {
             }
         }
         .padding()
+    }
+}
+
+#Preview {
+    ContentView()
+}
+```
+
+
+### 3、弹窗提示
+```swift
+import SwiftUI
+import ToastUI
+
+struct ContentView: View {
+    
+    @State private var showPop: Bool = false
+    @State private var popTitle: String = ""
+    
+    var body: some View {
+        VStack {
+            Button("测试弹窗") {
+                showPop = true
+                popTitle = "提示"
+            }
+        }
+        .padding()
+        .popup(
+            isPresented: $showPop,
+            title: popTitle,
+        )
     }
 }
 
