@@ -2,7 +2,7 @@
 # ToastUI
 
 一个简单易用的SwiftUI消息提示组件。
-![示例图片](./test1.png)
+![示例图片](./images/notice.png)
 ![示例图片](./test2.png)
 ![示例图片](./test3.png)
 
