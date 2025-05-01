@@ -6,17 +6,17 @@
 //
 import SwiftUI
 
-struct PopupModifier: ViewModifier {
+public struct PopupModifier: ViewModifier {
     
-    @Binding var isPresented: Bool
+    @Binding public var isPresented: Bool
     
-    let title: String
-    let config: PopupConfig
-    let onCancel: () -> Void
-    let onConfirm: () -> Void
-    let showCancel: Bool
+    public let title: String
+    public let config: PopupConfig
+    public let onCancel: () -> Void
+    public let onConfirm: () -> Void
+    public let showCancel: Bool
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         ZStack {
             content
             
@@ -39,7 +39,7 @@ struct PopupModifier: ViewModifier {
     }
 }
 
-extension View {
+public extension View {
     func popup(
         isPresented: Binding<Bool>,
         title: String,
