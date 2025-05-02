@@ -96,7 +96,7 @@ private struct ToastContainerView: View {
                 }
             }
             .position(x: geometry.size.width / 2,
-                     y: geometry.size.height - 100) // 调整位置到底部
+                     y: geometry.size.height / 2) // 修改为屏幕中间位置
         }
         .ignoresSafeArea()
     }
