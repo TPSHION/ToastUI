@@ -4,7 +4,7 @@ import SwiftUI
 public class ToastManager: ObservableObject {
     public static let shared = ToastManager()
     @Published private(set) var activeToasts: [ToastMessage] = []
-    private let maxVisibleToasts = 3  // 最大同时显示数量
+    private let maxVisibleToasts = 10  // 最大同时显示数量
     
     private var hostWindow: UIWindow?
     private var messageQueue: [ToastMessage] = []
