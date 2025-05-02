@@ -6,6 +6,10 @@ public class ToastManager: ObservableObject {
     @Published var currentToast: ToastMessage?
     
     private var hostWindow: UIWindow?
+    private var messageQueue: [ToastMessage] = []
+    private var isShowingToast = false
+    private let queueLock = NSRecursiveLock()
+    
     private init() {
         setupToastWindow()
     }
@@ -29,18 +33,54 @@ public class ToastManager: ObservableObject {
     }
     
     public func show(_ message: String, duration: TimeInterval = 3.0) {
+        let toastMessage = ToastMessage(message: message)
+        
+        // 只在修改队列时加锁
+        queueLock.lock()
+        messageQueue.append(toastMessage)
+        let shouldStartShowing = !isShowingToast
+        queueLock.unlock()
+        
+        if shouldStartShowing {
+            showNextToast(duration: duration)
+        }
+    }
+    
+    private func showNextToast(duration: TimeInterval) {
+        var nextToast: ToastMessage?
+        var shouldContinue = false
+        
+        // 最小化锁定范围
+        queueLock.lock()
+        if !messageQueue.isEmpty {
+            nextToast = messageQueue.first
+            isShowingToast = true
+            shouldContinue = true
+        } else {
+            isShowingToast = false
+            hostWindow?.isHidden = true
+            shouldContinue = false
+        }
+        queueLock.unlock()
+        
+        guard shouldContinue, let toast = nextToast else { return }
+        
         withAnimation {
-            currentToast = ToastMessage(message: message)
+            currentToast = toast
             hostWindow?.isHidden = false
         }
         
         Task { [weak self] in
-            // 使用 nanoseconds 替代 seconds
             try? await Task.sleep(nanoseconds: UInt64(duration * 1_000_000_000))
             await MainActor.run {
                 withAnimation {
+                    // 只在移除队列元素时加锁
+                    self?.queueLock.lock()
+                    self?.messageQueue.removeFirst()
+                    self?.queueLock.unlock()
+                    
                     self?.currentToast = nil
-                    self?.hostWindow?.isHidden = true
+                    self?.showNextToast(duration: duration)
                 }
             }
         }
