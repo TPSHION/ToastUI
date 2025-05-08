@@ -17,10 +17,9 @@ public struct PopupModifier: ViewModifier {
     public let showCancel: Bool
     
     public func body(content: Content) -> some View {
-        ZStack {
-            content
-            if isPresented {
-                ZStack{
+        content
+            .overlay(
+                isPresented ?
                     PopView(
                         title: title,
                         config: config,
@@ -34,9 +33,8 @@ public struct PopupModifier: ViewModifier {
                             isPresented = false
                         }
                     )
-                }
-            }
-        }
+                : nil
+            )
     }
 }
 
