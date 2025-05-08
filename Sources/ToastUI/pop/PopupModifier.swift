@@ -19,21 +19,22 @@ public struct PopupModifier: ViewModifier {
     public func body(content: Content) -> some View {
         ZStack {
             content
-            
             if isPresented {
-                PopView(
-                    title: title,
-                    config: config,
-                    showCancel: showCancel,
-                    cancel: {
-                        onCancel()
-                        isPresented = false
-                    },
-                    confirm: {
-                        onConfirm()
-                        isPresented = false
-                    }
-                )
+                ZStack{
+                    PopView(
+                        title: title,
+                        config: config,
+                        showCancel: showCancel,
+                        cancel: {
+                            onCancel()
+                            isPresented = false
+                        },
+                        confirm: {
+                            onConfirm()
+                            isPresented = false
+                        }
+                    )
+                }
             }
         }
     }
